@@ -1,0 +1,9 @@
+Single page app
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
