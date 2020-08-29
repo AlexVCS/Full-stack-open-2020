@@ -1,4 +1,4 @@
-0.4 New note
+New note
 
 Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
 
