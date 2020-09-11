@@ -1,0 +1,5 @@
+New note (single page app)
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+The Content-type of this request (application/json) tells the server that the included data is represented in the JSON format
