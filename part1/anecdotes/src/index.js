@@ -7,6 +7,11 @@ const Button = (props) => {
   )}
 
 const VoteButton = (props) => {
+  const votes = [1, 2, 3, 4, 5]
+
+  const votesCopy = [...votes]
+  votesCopy[votesCopy.value] += 1
+
   return (
     <button className="vote">vote</button>
   )
