@@ -31,8 +31,6 @@ const App = () => {
     setAll(allClicks.concat('R'))
     setRight(right + 1)
     }
-
-    console.log(allClicks);
   
   return (
     <div>
@@ -44,7 +42,6 @@ const App = () => {
     </div>
   )
 }
-
 
 
 

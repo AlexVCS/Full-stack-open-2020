@@ -7,11 +7,6 @@ const Button = (props) => {
   )}
 
 const VoteButton = (props) => {
-  // const votes = [1, 2, 3, 4, 5, 6]
-
-  // const votesCopy = {...votes}
-  // votesCopy[votes.value] += 1
-
   return (
     <button onClick={props.logVote} className="vote">vote</button>
   )
@@ -31,7 +26,12 @@ const SecondHeader = () => {
 
 const App = (props) => {
 const [selected, setSelected] = useState(0)
-    
+
+const votes = [1, 2, 3, 4, 5, 6]
+
+const votesCopy = {...votes}
+votesCopy[1] += 1
+console.log(votesCopy)
 
 const randomAnecdote = () => Math.floor(Math.random() * (props.anecdotes.length - 1))
 
