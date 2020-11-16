@@ -24,14 +24,13 @@ const SecondHeader = () => {
   )
 }
 
+
+
 const App = (props) => {
 const [selected, setSelected] = useState(0)
 
-const votes = [1, 2, 3, 4, 5, 6]
-
-const votesCopy = {...votes}
-votesCopy[1] += 1
-console.log(votesCopy)
+let votes = [0, 1, 2, 3, 4, 5, 6]
+let votesCopy = [...votes]
 
 const randomAnecdote = () => Math.floor(Math.random() * (props.anecdotes.length - 1))
 
@@ -41,7 +40,7 @@ return (
     <div id="anecdote">
       {props.anecdotes[selected]}
     </div>
-    <VoteButton logVote={() => console.log('you voted')} />
+    <VoteButton logVote={() => console.log(votesCopy[0] += 1)} />
     <Button handleClick={() => setSelected(randomAnecdote)} />
     <SecondHeader />
   </div>
@@ -58,8 +57,6 @@ const anecdotes = [
 ]
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App anecdotes={anecdotes} />
-  </React.StrictMode>,
+    <App anecdotes={anecdotes} />,
   document.getElementById('root')
 )
