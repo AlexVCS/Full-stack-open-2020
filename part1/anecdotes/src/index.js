@@ -14,7 +14,7 @@ const Button = (props) => {
 
 const VoteButton = (props) => {
   return (
-    <button onClick={props.logVote} className="vote">vote</button>
+    <button onClick={props.handleClick} className="vote">vote</button>
   )
 }
 
@@ -36,6 +36,12 @@ const [votes, setVotes] = useState(() => anecdotes.map(() => 0))
 
 const randomAnecdote = () => Math.floor(Math.random() * (props.anecdotes.length - 1))
 
+const votesCopy = [...votes]
+
+// [...votes.slice(0, selected), votes[selected] + 1, ...votes.slice(selected + 1)]
+
+console.log(votes)
+
 return (
   <div>
     <MainHeader />
@@ -43,9 +49,11 @@ return (
       {props.anecdotes[selected]}
     </div>
     <div id="votes">
-      has {randomAnecdote(votes + 1)} votes
+      has {votes[selected]} votes
     </div>
-    <VoteButton logVote={() => setVotes(randomAnecdote)} />
+    <VoteButton handleClick={() => {
+      votesCopy[selected] += 1
+      setVotes([...votesCopy])}} />
     <Button handleClick={() => setSelected(randomAnecdote)} />
     <SecondHeader />
   </div>
