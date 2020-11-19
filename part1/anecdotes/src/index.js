@@ -6,11 +6,11 @@ const Button = (props) => {
   <button onClick={props.handleClick} className="next">next anecdote</button>
   )}
 
-const VoteCount = (props) => {
-  return (
-    <div>has {props.logVote} votes</div>
-  )
-}
+// const VoteCount = (props) => {
+//   return (
+//     <div>has {props} votes</div>
+//   )
+// }
 
 const VoteButton = (props) => {
   return (
@@ -30,16 +30,9 @@ const SecondHeader = () => {
   )
 }
 
-// let example = [0, 1, 2, 3, 4, 5, 6]
-// let exampleCopy = [...example]
-// console.log(exampleCopy[0] += 1)
-
-let votes = Array.apply(null, new Array(100)).map(Number.prototype.valueOf,0);
-let votesCopy = [...votes]
-
 const App = (props) => {
 const [selected, setSelected] = useState(0)
-// const [vote, setVote] = useState(0)
+const [votes, setVotes] = useState(() => anecdotes.map(() => 0))
 
 const randomAnecdote = () => Math.floor(Math.random() * (props.anecdotes.length - 1))
 
@@ -49,8 +42,10 @@ return (
     <div id="anecdote">
       {props.anecdotes[selected]}
     </div>
-    <VoteCount />
-    <VoteButton logVote={() => console.log(votesCopy[0] += 1)} />
+    <div id="votes">
+      has {randomAnecdote(votes + 1)} votes
+    </div>
+    <VoteButton logVote={() => setVotes(randomAnecdote)} />
     <Button handleClick={() => setSelected(randomAnecdote)} />
     <SecondHeader />
   </div>
