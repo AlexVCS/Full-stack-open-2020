@@ -4,13 +4,8 @@ import ReactDOM from 'react-dom';
 const Button = (props) => {
   return (
   <button onClick={props.handleClick} className="next">next anecdote</button>
-  )}
-
-// const VoteCount = (props) => {
-//   return (
-//     <div>has {props} votes</div>
-//   )
-// }
+  )
+}  
 
 const VoteButton = (props) => {
   return (
@@ -33,22 +28,18 @@ const SecondHeader = () => {
 const App = (props) => {
 const [selected, setSelected] = useState(0)
 const [votes, setVotes] = useState(() => anecdotes.map(() => 0))
+const votesCopy = [...votes]
+// const [allVotes, setAll] = useState(0)
 
 const randomAnecdote = () => Math.floor(Math.random() * (props.anecdotes.length - 1))
-
-const votesCopy = [...votes]
-
-// [...votes.slice(0, selected), votes[selected] + 1, ...votes.slice(selected + 1)]
-
-console.log(votes)
 
 return (
   <div>
     <MainHeader />
-    <div id="anecdote">
+    <div>
       {props.anecdotes[selected]}
     </div>
-    <div id="votes">
+    <div>
       has {votes[selected]} votes
     </div>
     <VoteButton handleClick={() => {
@@ -56,6 +47,9 @@ return (
       setVotes([...votesCopy])}} />
     <Button handleClick={() => setSelected(randomAnecdote)} />
     <SecondHeader />
+    {/* <div>
+
+    </div> */}
   </div>
 )
 }
