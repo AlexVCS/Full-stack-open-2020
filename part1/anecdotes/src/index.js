@@ -19,19 +19,33 @@ const MainHeader = () => {
   )
 }
 
-const SecondHeader = () => {
-  return (
+const HighestVotes = ({ max, highestVotes }) => {
+  if (max >= 1) {
+    return (
+  <>
     <h2>Anecdote with most votes</h2>
+    {highestVotes} <br />
+    has {max} votes
+  </>
   )
+  } else {
+    return ''
+  }
 }
 
 const App = (props) => {
 const [selected, setSelected] = useState(0)
 const [votes, setVotes] = useState(() => anecdotes.map(() => 0))
 const votesCopy = [...votes]
-// const [allVotes, setAll] = useState([])
 
 const randomAnecdote = () => Math.floor(Math.random() * (props.anecdotes.length - 1))
+
+const max = () => Math.max(...votes)
+
+const highestVotes = () => {
+  let indexOfMax = votes.indexOf(max())
+  return anecdotes[indexOfMax]
+}
 
 return (
   <div>
@@ -46,13 +60,7 @@ return (
       votesCopy[selected] += 1
       setVotes([...votesCopy])}} />
     <Button handleClick={() => setSelected(randomAnecdote)} />
-    <SecondHeader />
-    {/* <div>
-      {props.anecdotes[setVotes]}
-    </div>
-    <div>
-      has {votes[selected]} votes
-    </div> */}
+    <HighestVotes max={max()} highestVotes={highestVotes()} />
   </div>
 )
 }
