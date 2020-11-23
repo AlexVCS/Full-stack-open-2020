@@ -29,7 +29,7 @@ const App = (props) => {
 const [selected, setSelected] = useState(0)
 const [votes, setVotes] = useState(() => anecdotes.map(() => 0))
 const votesCopy = [...votes]
-// const [allVotes, setAll] = useState(0)
+// const [allVotes, setAll] = useState([])
 
 const randomAnecdote = () => Math.floor(Math.random() * (props.anecdotes.length - 1))
 
@@ -48,7 +48,10 @@ return (
     <Button handleClick={() => setSelected(randomAnecdote)} />
     <SecondHeader />
     {/* <div>
-
+      {props.anecdotes[setVotes]}
+    </div>
+    <div>
+      has {votes[selected]} votes
     </div> */}
   </div>
 )
