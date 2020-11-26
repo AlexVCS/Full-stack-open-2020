@@ -14,12 +14,12 @@ const Total = (props) => {
   ) 
 }
 
-const Part = ({ course }) => {
+const Part = (props) => {
   // console.log(props)
-  console.log(course)
+  // console.log(course)
   return (
     <>
-      <p>{course.part.name} {course.part.exercises}</p>
+      <p>{parts.name} {parts.exercises}</p>
     </>    
   )
   
@@ -30,7 +30,7 @@ const Content = (props) => {
   return (
     <>
       {props.course.parts.map(part =>
-      <Part key={props.course.parts.id}>{part.name}{part.exercises} </Part>
+      <Part key={props.course.parts.id} />
       )}
     </>
   )
