@@ -14,12 +14,13 @@ const Total = (props) => {
   ) 
 }
 
-const Part = (props) => {
-  // console.log(props)
-  // console.log(course)
+const Part = (parts) => {
+  const onePart = parts.map(part => part.name)
+  console.log(onePart)
+  
   return (
     <>
-      <p>{parts.name} {parts.exercises}</p>
+      <p>{onePart} {parts.exercises}</p>
     </>    
   )
   
