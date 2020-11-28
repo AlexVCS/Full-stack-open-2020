@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 
 const Header = ({ course }) => {
   return (
@@ -8,31 +9,27 @@ const Header = ({ course }) => {
 }
 
 const Total = ({ course }) => {
-  const sum = course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises
-  return(
-    <p>Number of exercises {sum}</p>
+  const sum = course.parts.reduce((s, p) => s + p.exercises, 0)
+  return (
+    <p className="total">total of {sum} exercises</p>
   ) 
 }
 
-const Part = (props) => {
-  const onePart = props.map((part) => part.name)
-  console.log(onePart)
-  
+const Part = ({ part }) => {
   return (
     <>
-      <p key={props.id}>{onePart} </p>
+      <p>{part.name} {part.exercises}</p>
     </>    
   )
-  
 }
 
 
-const Content = ({ course }) => {
+const Content = ({ course }) => {  
   return (
     <>
-      <Part part={course.part} />
-      <Part part={course.part} />
-      <Part part={course.part} />
+    {course.parts.map(part =>
+      <Part key={part.id} part={part} />
+      )}
     </>
   )
 }
@@ -40,42 +37,60 @@ const Content = ({ course }) => {
 
 const Course = (props) => {
   const { course } = props
-  // console.log(props)
   return (
     <>
       <Header course={course} />
       <Content course={course} />
       <Total course={course} />
-        <Part course={course} />
-        <Part course={course} />
     </>
   )
 }
 
 const App = () => {
-  const course = {
-    id: 1,
-    name: 'Half Stack application development',
+  const courses = [
+    {
+      name: 'Half Stack application development',
+      id: 1,
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
+      ]
+    },
+  {
+    name: 'Node.js',
+    id: 2,
     parts: [
       {
-        name: 'Fundamentals of React',
-        exercises: 10,
+        name: 'Routing',
+        exercises: 3,
         id: 1
       },
       {
-        name: 'Using props to pass data',
+        name: 'Middlewares',
         exercises: 7,
         id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
       }
     ]
   }
-
-  console.log('App works')
+]
 
   return (
     <div>
