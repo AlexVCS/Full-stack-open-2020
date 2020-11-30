@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const Header = ({ course }) => {
+const Header = ({ courses }) => {
   return (
-    <h1>{course.name}</h1>
+    <h1>{courses.name}</h1>
   )
 }
 
-const Total = ({ course }) => {
-  const sum = course.parts.reduce((s, p) => s + p.exercises, 0)
+const Total = ({ courses }) => {
+  const sum = courses.parts.reduce((s, p) => s + p.exercises, 0)
   return (
     <p className="total">total of {sum} exercises</p>
   ) 
@@ -24,10 +24,11 @@ const Part = ({ part }) => {
 }
 
 
-const Content = ({ course }) => {  
+const Content = ({ courses }) => {
+  // console.log(courses.part);  
   return (
     <>
-    {course.parts.map(part =>
+    {courses.part.map(part =>
       <Part key={part.id} part={part} />
       )}
     </>
@@ -39,9 +40,9 @@ const Course = (props) => {
   const { course } = props
   return (
     <>
-      <Header course={course} />
-      <Content course={course} />
-      <Total course={course} />
+      <Header courses={course} />
+      <Content courses={course} />
+      <Total courses={course} />
     </>
   )
 }
@@ -94,7 +95,7 @@ const App = () => {
 
   return (
     <div>
-      <Course course={course} />
+      <Course course={courses} />
     </div>
   )
 }
