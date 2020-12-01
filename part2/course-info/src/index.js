@@ -2,9 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-const Header = ({ courses }) => {
+const MainHeader = () => {
   return (
-    <h1>{courses.name}</h1>
+    <h1>Web development curriculum</h1>
+  )
+}
+
+const HalfStackHeader = ({ courses }) => {
+  return (
+    <h2>{courses.name}</h2>
   )
 }
 
@@ -25,10 +31,10 @@ const Part = ({ part }) => {
 
 
 const Content = ({ courses }) => {
-  // console.log(courses.part);  
+  console.log(courses.part);  
   return (
     <>
-    {courses.part.map(part =>
+    {courses && courses.part.map(part =>
       <Part key={part.id} part={part} />
       )}
     </>
@@ -40,7 +46,8 @@ const Course = (props) => {
   const { course } = props
   return (
     <>
-      <Header courses={course} />
+      <MainHeader />
+      <HalfStackHeader courses={course} />
       <Content courses={course} />
       <Total courses={course} />
     </>
