@@ -33,7 +33,7 @@ const Part = ({ part }) => {
 const Content = ({ course }) => {  
   return (
     <>
-    {course.parts.map(part =>
+    {course.parts.map((part) =>
       <Part key={part.id} part={part} />
       )}
     </>
@@ -41,7 +41,7 @@ const Content = ({ course }) => {
 }
 
 
-const Course = (props) => {
+const Courses = (props) => {
   const { course } = props
   return (
     <>
@@ -101,7 +101,7 @@ const App = () => {
 
   return (
     <>
-      <Course course={course} />
+      <Courses course={course} />
     </>
   )
 }
