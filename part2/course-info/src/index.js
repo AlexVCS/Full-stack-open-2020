@@ -30,10 +30,12 @@ const Part = ({ part }) => {
 }
 
 
-const Content = ({ course }) => {  
+
+
+const Content = ({ course }) => {
   return (
     <>
-    {course.map((part) =>
+    {course.map(part =>
       <Part key={part.id} part={part} />
       )}
     </>
