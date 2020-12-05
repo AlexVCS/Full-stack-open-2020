@@ -33,7 +33,7 @@ const Part = ({ part }) => {
 const Content = ({ course }) => {  
   return (
     <>
-    {course.parts.map((part) =>
+    {course.map((part) =>
       <Part key={part.id} part={part} />
       )}
     </>
