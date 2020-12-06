@@ -29,9 +29,6 @@ const Part = ({ part }) => {
   )
 }
 
-
-
-
 const Content = ({ course }) => {
   return (
     <>
@@ -41,7 +38,6 @@ const Content = ({ course }) => {
     </>
   )
 }
-
 
 const Courses = (props) => {
   const { course } = props
