@@ -30,6 +30,8 @@ const Part = ({ part }) => {
 }
 
 const Content = ({ course }) => {
+  // console.log(Courses.parts);
+
   return (
     <>
     {course.map(part =>
