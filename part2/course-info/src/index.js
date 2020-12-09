@@ -22,15 +22,17 @@ const HalfStackHeader = ({ course }) => {
 // }
 
 const Part = ({ part }) => {
+  // console.log(part.parts)
+
   return (
     <>
-      <p>{part.name} {part.exercises}</p>
+      <p>{part.name}</p>
     </>    
   )
 }
 
 const Content = ({ course }) => {
-  // console.log(Courses.parts);
+  // console.log(parts);
 
   return (
     <>
