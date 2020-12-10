@@ -9,13 +9,21 @@ const MainHeader = () => {
 }
 
 const HalfStackHeader = ({ course }) => {
+  
+  
   return (
-    <h2>{course.name}</h2>
+    <>
+    {/* {course.map(course =>
+      <h2 key={name.id}>{course.name}</h2>
+    )} */}
+    {course.name}
+    {/* {course.name is currently undefined, find the proper convention} */}
+    </>
   )
 }
 
 // const Total = ({ course }) => {
-//   const sum = course.part.reduce((s, p) => s + p.exercises, 0)
+//   const sum = course.parts.reduce((s, p) => s + p.exercises, 0)
 //   return (
 //     <p className="total">total of {sum} exercises</p>
 //   ) 
@@ -26,7 +34,9 @@ const Part = ({ part }) => {
 
   return (
     <>
-      <p>{part.name}</p>
+      {part.parts.map(part =>
+        <p key={part.id}>{part.name} {part.exercises}</p>
+  )}
     </>    
   )
 }
