@@ -9,7 +9,7 @@ const MainHeader = () => {
 }
 
 const HalfStackHeader = ({ course }) => {
-  
+  // console.log();
   
   return (
     <>
@@ -17,21 +17,23 @@ const HalfStackHeader = ({ course }) => {
       <h2 key={name.id}>{course.name}</h2>
     )} */}
     {course.name}
-    {/* {course.name is currently undefined, find the proper convention} */}
+    {/* {course.name is undefined, find the proper convention} */}
     </>
   )
 }
 
-// const Total = ({ course }) => {
-//   const sum = course.parts.reduce((s, p) => s + p.exercises, 0)
-//   return (
-//     <p className="total">total of {sum} exercises</p>
-//   ) 
-// }
+const Total = ({ course }) => {
+  const sum = course.reduce(function  (s, p) {
+    console.log(p.parts.exercises)
+    // p.parts.exercises is undefined
+return s + p.parts.exercises;
+}, 0)
+  return (
+    <p className="total">total of {sum} exercises</p>
+  ) 
+}
 
 const Part = ({ part }) => {
-  // console.log(part.parts)
-
   return (
     <>
       {part.parts.map(part =>
@@ -42,8 +44,6 @@ const Part = ({ part }) => {
 }
 
 const Content = ({ course }) => {
-  // console.log(parts);
-
   return (
     <>
     {course.map(part =>
@@ -60,7 +60,7 @@ const Courses = (props) => {
       <MainHeader />
       <HalfStackHeader course={course} />
       <Content course={course} />
-      {/* <Total course={course} /> */}
+      <Total course={course} />
     </>
   )
 }
