@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+// import './Course';
 
 const MainHeader = () => {
   return (
@@ -8,26 +9,18 @@ const MainHeader = () => {
   )
 }
 
-const HalfStackHeader = ({ course }) => {
-  // console.log();
-  
+const HalfStackHeader = ({ name }) => {
   return (
     <>
-    {/* {course.map(course =>
-      <h2 key={name.id}>{course.name}</h2>
-    )} */}
-    {course.name}
-    {/* {course.name is undefined, find the proper convention} */}
+      <h2>{name}</h2>
     </>
   )
 }
 
-const Total = ({ course }) => {
-  const sum = course.reduce(function  (s, p) {
-    console.log(p.parts.exercises)
-    // p.parts.exercises is undefined
-return s + p.parts.exercises;
-}, 0)
+const Total = ({ part }) => {
+  const sum = part.parts.reduce(function  (s, p) {
+    return s + p.exercises;
+  }, 0)
   return (
     <p className="total">total of {sum} exercises</p>
   ) 
@@ -47,7 +40,11 @@ const Content = ({ course }) => {
   return (
     <>
     {course.map(part =>
-      <Part key={part.id} part={part} />
+      <div key={part.name}>
+        <HalfStackHeader name={part.name} />
+        <Part part={part} />
+        <Total part={part} />
+      </div>
       )}
     </>
   )
@@ -58,9 +55,7 @@ const Courses = (props) => {
   return (
     <>
       <MainHeader />
-      <HalfStackHeader course={course} />
       <Content course={course} />
-      <Total course={course} />
     </>
   )
 }
