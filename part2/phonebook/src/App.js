@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const App = () => {
   const [ persons, setPersons ] = useState([
     { name: 'Arto Hellas' }
   ])
   const [ newName, setNewName ] = useState('')
+
+  // const addName = (event) => {
+  //   event.preventDefault()
+  //   const noteObject = {
+  //     content: newNote,
+  //     id: persons,
+  //   }
 
   return (
     <div>
