@@ -47,7 +47,7 @@ const App = () => {
       <div>debug: {newName}</div>
       <ul>
         {namesToShow.map(newName =>
-          <p key={newName.id} person={newName} />
+          <li key={newName.id} person={persons} />
         )}
       </ul>
     </div>
