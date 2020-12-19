@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 const App = () => {
   const [ persons, setPersons ] = useState([{ name: 'Arto Hellas' }]) 
   const [ newName, setNewName ] = useState('')
-  const [ showAll, setShowAll ] = useState(true)
 
   const addName = (event) => {
     event.preventDefault()
@@ -17,13 +16,8 @@ const App = () => {
   }
 
   const handleNameChange = (event) => {
-    // console.log(event.target.value);
     setNewName(event.target.value)
   }
-
-  const namesToShow = showAll
-    ? persons
-    : persons.filter(person => person.important === true)
 
   return (
     <div>
@@ -40,14 +34,14 @@ const App = () => {
           number: <input />
         </div>
         <div>
-          <button onClick={() => setShowAll(showAll)} type="submit">add</button>
+          <button type="submit">add</button>
         </div>
       </form>
       <h2>Numbers</h2>
       <div>debug: {newName}</div>
       <ul>
-        {namesToShow.map(newName =>
-          <li key={newName.id} person={persons} />
+        {persons.map(setPersons =>
+          <li key={persons.name} person={setPersons} />
         )}
       </ul>
     </div>
