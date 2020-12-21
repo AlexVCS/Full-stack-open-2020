@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
 
 const App = () => {
-  const [ persons, setPersons ] = useState([{ name: 'Arto Hellas' }]) 
+  const [ persons, setPersons ] = useState([{ name: 'Arto Hellas', id: 1 }]) 
   const [ newName, setNewName ] = useState('')
 
   const addName = (event) => {
     event.preventDefault()
     const nameObject = {
-      content: newName,
+      name: newName,
       id: persons.length + 1,
     }
 
-    setPersons(persons.concat(nameObject))
+    setPersons([...persons, nameObject])
     setNewName('')
   }
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
+
+  console.log(persons);
+  console.log(newName);
 
   return (
     <div>
@@ -38,11 +41,11 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {/* <div>debug: {newName}</div> */}
       <ul>
-        {persons.map(setPersons =>
-          <li key={persons.id} person={setPersons} />
+        {persons.map(person =>
+          <li key={person.id}>{person.name}</li>
         )}
+        
       </ul>
     </div>
   )
