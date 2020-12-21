@@ -11,6 +11,11 @@ const App = () => {
       id: persons.length + 1,
     }
 
+    // if (newName === ) {
+    //   newName.pop()
+    //   alert(`${newName} is already added to phonebook`)
+    // }
+
     setPersons([...persons, nameObject])
     setNewName('')
   }
@@ -18,9 +23,6 @@ const App = () => {
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
-
-  console.log(persons);
-  console.log(newName);
 
   return (
     <div>
@@ -34,7 +36,10 @@ const App = () => {
           onChange={handleNameChange} />
         </div>
         <div>
-          number: <input />
+          number: <input 
+          
+
+          />
         </div>
         <div>
           <button type="submit">add</button>
@@ -45,12 +50,11 @@ const App = () => {
         {persons.map(person =>
           <li key={person.id}>{person.name}</li>
         )}
-        
       </ul>
     </div>
   )
 }
 
-// alert(`${newName} is already added to phonebook`)
+
 
 export default App
