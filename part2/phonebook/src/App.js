@@ -38,10 +38,10 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <div>debug: {newName}</div>
+      {/* <div>debug: {newName}</div> */}
       <ul>
         {persons.map(setPersons =>
-          <li key={persons.name} person={setPersons} />
+          <li key={persons.id} person={setPersons} />
         )}
       </ul>
     </div>
