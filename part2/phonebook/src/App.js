@@ -11,7 +11,7 @@ const App = () => {
       id: persons.length + 1,
     }
 
-    // if (newName === ) {
+    // if (nameObject.name ) {
     //   newName.pop()
     //   alert(`${newName} is already added to phonebook`)
     // }
