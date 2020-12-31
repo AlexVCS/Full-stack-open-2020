@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
 const App = () => {
-  const [ persons, setPersons ] = useState([{ name: 'Arto Hellas', id: 1 }]) 
+  const [ persons, setPersons ] = useState([{ name: 'Alex', id: 1, number: '404-4949' }]) 
   const [ newName, setNewName ] = useState('')
+  const [ newNumber, setNewNumber ] = useState('')
 
   const addName = (event) => {
     event.preventDefault()
@@ -11,10 +12,12 @@ const App = () => {
       id: persons.length + 1,
     }
 
-    // if (nameObject.name ) {
-    //   newName.pop()
-    //   alert(`${newName} is already added to phonebook`)
-    // }
+    if (persons.name === newName) {
+      alert(`${newName} is already added to phonebook`)
+      persons.pop()
+    } else {
+
+    }
 
     setPersons([...persons, nameObject])
     setNewName('')
@@ -22,6 +25,21 @@ const App = () => {
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
+  }
+
+  const addNumber = (event) => {
+    event.preventDefault()
+    const numberObject = {
+      number: newNumber,
+      id: persons.length + 1,
+    }
+
+    setNewNumber([...newNumber, numberObject])
+    setNewNumber('')
+  }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
   }
 
   return (
@@ -37,8 +55,8 @@ const App = () => {
         </div>
         <div>
           number: <input 
-          
-
+          value={newNumber}
+          onChange={handleNumberChange}
           />
         </div>
         <div>
@@ -48,7 +66,7 @@ const App = () => {
       <h2>Numbers</h2>
       <ul>
         {persons.map(person =>
-          <li key={person.id}>{person.name}</li>
+          <li key={person.id}>{person.name} {person.number}</li>
         )}
       </ul>
     </div>
