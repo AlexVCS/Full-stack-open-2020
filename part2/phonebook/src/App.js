@@ -12,11 +12,10 @@ const App = () => {
       id: persons.length + 1,
     }
 
-    if (persons.name === newName) {
-      alert(`${newName} is already added to phonebook`)
-      persons.pop()
+    if (persons.every((aPerson) => aPerson.name !== newName)) {
+      
     } else {
-
+      alert(`${newName} is already added to phonebook`)
     }
 
     setPersons([...persons, nameObject])
