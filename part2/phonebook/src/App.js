@@ -16,6 +16,9 @@ const App = () => {
       
     } else {
       alert(`${newName} is already added to phonebook`)
+      persons.filter(persons => {
+        return persons
+      })
     }
 
     setPersons([...persons, nameObject])
@@ -65,7 +68,7 @@ const App = () => {
       <h2>Numbers</h2>
       <ul>
         {persons.map(person =>
-          <li key={person.id}>{person.name} {person.number}</li>
+          <li key={person.name}>{person.name} {person.number}</li>
         )}
       </ul>
     </div>
