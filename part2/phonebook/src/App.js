@@ -47,8 +47,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <div>filter shown with<input /></div>
       <form onSubmit={addName}>
-        <div>filter shown with<input /></div>
         <h3>Add a new</h3>
         <div>
           name: <input
