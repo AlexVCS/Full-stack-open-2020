@@ -9,35 +9,23 @@ const App = () => {
     event.preventDefault()
     const nameObject = {
       name: newName,
-      id: persons.length + 1,
-    }
-
-    if (persons.every((aPerson) => aPerson.name !== newName)) {
-      
-    } else {
-      alert(`${newName} is already added to phonebook`)
-      persons.filter(persons => {
-        return persons
-      })
-    }
-
-    setPersons([...persons, nameObject])
-    setNewName('')
-  }
-
-  const handleNameChange = (event) => {
-    setNewName(event.target.value)
-  }
-
-  const addNumber = (event) => {
-    event.preventDefault()
-    const numberObject = {
       number: newNumber,
       id: persons.length + 1,
     }
 
-    setNewNumber([...newNumber, numberObject])
-    setNewNumber('')
+    if (persons.every((aPerson) => aPerson.name !== newName)) {
+      setPersons([...persons, nameObject])
+      setNewName('')
+      setNewNumber('')
+    } else {
+      alert(`${newName} is already added to phonebook`)
+      setNewName('')
+      setNewNumber('')
+    } 
+  }
+
+  const handleNameChange = (event) => {
+    setNewName(event.target.value)
   }
 
   const handleNumberChange = (event) => {
@@ -74,7 +62,5 @@ const App = () => {
     </div>
   )
 }
-
-
 
 export default App
