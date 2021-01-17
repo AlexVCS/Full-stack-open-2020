@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 
 const App = () => {
-  const [ persons, setPersons ] = useState([{ name: 'Alex', id: 1, number: '404-4949' }]) 
+  const [ persons, setPersons ] = useState([
+    { name: 'Alex', id: 1, number: '404-4949' },
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' }
+  ]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
 
@@ -31,6 +36,10 @@ const App = () => {
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
   }
+
+  // const searchByName = () => {
+  //   ? setNewName.filter(name )
+  // }
 
   return (
     <div>
