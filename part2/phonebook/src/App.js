@@ -38,7 +38,9 @@ const App = () => {
   }
 
   // const searchByName = () => {
-  //   ? setNewName.filter(name )
+  //   ? persons.filter(person => {
+
+  //   })
   // }
 
   return (
