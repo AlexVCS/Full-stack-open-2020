@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css';
+import Filter from './components/Filter';
+import DisplayCountries from './components/DisplayCountries';
 
 function App() {
   const [ countries, setCountries ] = useState([])
+  const [ search, setSearch ] = useState('')
 
   useEffect(() => {
     console.log('effect')
@@ -16,10 +19,17 @@ function App() {
       })
   }, [])
 
+  const findCountries = countries.filter(country => {
+    return country.name.toLowerCase().includes( search.toLowerCase() )
+  })
+
   return (
     <div className="app">
       <div>
-        find countries <input placeholder="type in a country" />
+        <Filter setSearch={setSearch} />
+      </div>
+      <div>
+        <DisplayCountries findCountries={findCountries} />
       </div>
     </div>
   );
