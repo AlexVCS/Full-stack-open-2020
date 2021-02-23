@@ -29,7 +29,7 @@ function App() {
         <Filter setSearch={setSearch} />
       </div>
       <div>
-        <DisplayCountries findCountries={findCountries} />
+        <DisplayCountries countries={countries} />
       </div>
     </div>
   );

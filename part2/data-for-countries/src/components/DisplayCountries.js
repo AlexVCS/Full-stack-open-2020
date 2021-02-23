@@ -1,9 +1,9 @@
-const DisplayCountries = ({ findCountries }) => {
+const DisplayCountries = ({ countries }) => {
     return (
         <div>
-           {findCountries.map((country, index) => {
+           {countries.map((country) => {
                return (
-               <div key={index}>{country.name}</div>
+                   <div key={country.name}>{country.name}</div>
                )
            })} 
         </div>
