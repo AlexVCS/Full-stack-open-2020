@@ -1,10 +1,13 @@
-const Filter = ({ setSearch }) => {
+const Filter = ({ countries, search }) => {
+        
+    const handleOnChange = countries.filter(country => country.name.toLowerCase().includes( search.toLowerCase() ))
+
     return (
         <div>
            find countries
            <div>
             <input
-                    onChange={e => setSearch(e.target.value)}
+                    onChange={handleOnChange}
                     placeholder="type in a country"
             />
            </div>
@@ -13,3 +16,9 @@ const Filter = ({ setSearch }) => {
 }
 
 export default Filter
+
+// basic info to show about a country result
+// country.capital
+// country.population
+// country.languages.name
+// country.flag
