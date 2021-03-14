@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import './App.css';
-// import Filter from './components/Filter';
-// import DisplayCountries from './components/DisplayCountries';
+import './App.css'
 
 function App() {
   const [ countries, setCountries ] = useState([])
@@ -33,16 +31,11 @@ function App() {
   const handleOnChange = (event) => {
     setSearch(event.target.value)
   }
-  
-  // const filterCountries = countries.filter(country => country.name.toLowerCase().includes( search.toLowerCase() )).map(filteredCountries => (
-  //   <div>{filteredCountries.name}</div>
-  // ))
-  // console.log(filterCountries);
-  // const displayCountries = filterCountries.map((country, index) => <div key={index}>{country.name}</div>)
 
   return (
     <div className="app">
       <div>
+        find countries
         <input
           placeholder="type in a country"
           onChange={(event) => {handleOnChange(event)}}
@@ -65,11 +58,11 @@ function App() {
                   <div>Population {country.population}</div>
                   <h3>Languages</h3>
                   {filteredCountries[0].languages.map(languages =>
-                    <li>
+                    <li className='languages-list'>
                       <ul>{languages.name}</ul>
                     </li>
                   )}
-                  <img src={country.flag} alt={`flag of ${country}`} />
+                  <img src={country.flag} alt='country flag' />
                 </div>
                 )      
       }
