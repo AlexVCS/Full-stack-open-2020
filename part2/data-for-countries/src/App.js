@@ -32,6 +32,8 @@ function App() {
     setSearch(event.target.value)
   }
 
+  const api_key = process.env.REACT_APP_API_KEY
+
   return (
     <div className="app">
       <div>
@@ -48,7 +50,12 @@ function App() {
       }
       { filteredCountries.length > 1 && filteredCountries.length <= 10 &&
           <div>
-            {filteredCountries.map(country => (<div>{country.name}</div>))}
+            {filteredCountries.map(country => (
+              <div>
+                {country.name}
+                 <button>show</button>
+              </div>
+              ))}
           </div>
       }
       { filteredCountries.length === 1 && filteredCountries.map(country => 
@@ -58,11 +65,12 @@ function App() {
                   <div>Population {country.population}</div>
                   <h3>Languages</h3>
                   {filteredCountries[0].languages.map(languages =>
-                    <li className='languages-list'>
-                      <ul>{languages.name}</ul>
+                    <li className="languages-list">
+                      <ul className="language">{languages.name}</ul>
                     </li>
                   )}
-                  <img src={country.flag} alt='country flag' />
+                  <img src={country.flag} className="flag" alt='country flag' />
+                  <h3>Weather in {country.capital}</h3>
                 </div>
                 )      
       }

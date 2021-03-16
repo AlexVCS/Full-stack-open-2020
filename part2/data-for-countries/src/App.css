@@ -2,6 +2,13 @@
 	box-sizing: border-box;
 }
 
-.languages-list {
-	margin-left: 10px;
+.language {
+	display: inline;
+	padding-inline-start: 0;
+}
+
+.flag {
+	margin-top: 20px;
+	height: 600px;
+	width: 800px;
 }
