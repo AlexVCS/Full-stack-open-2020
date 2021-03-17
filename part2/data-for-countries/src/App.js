@@ -6,6 +6,7 @@ function App() {
   const [ countries, setCountries ] = useState([])
   const [ filteredCountries, setFilteredCountries ] = useState([])
   const [ search, setSearch ] = useState('')
+  const [ weather, setWeather ] = useState([])
 
   useEffect(() => {
     console.log('effect')
@@ -28,11 +29,19 @@ function App() {
       setFilteredCountries(filteredCountryList)
   }, [search, countries])
 
+  useEffect(() => {
+    axios
+      .get(`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY}&query=${search}`)
+      .then (response => {
+        console.log('promise fulfilled')
+        console.log(response.data)
+        setWeather(response.data)
+      })
+  }, [search, countries])
+
   const handleOnChange = (event) => {
     setSearch(event.target.value)
   }
-
-  const api_key = process.env.REACT_APP_API_KEY
 
   return (
     <div className="app">
@@ -51,26 +60,30 @@ function App() {
       { filteredCountries.length > 1 && filteredCountries.length <= 10 &&
           <div>
             {filteredCountries.map(country => (
-              <div>
+              <div key={country.name}>
                 {country.name}
-                 <button>show</button>
+                 <button onClick={() => setSearch(country.name)}>show</button>
               </div>
               ))}
           </div>
       }
       { filteredCountries.length === 1 && filteredCountries.map(country => 
-                <div>
+                <div key={country.name}>
                   <h2>{country.name}</h2>
                   <div>Capital {country.capital}</div>
                   <div>Population {country.population}</div>
                   <h3>Languages</h3>
                   {filteredCountries[0].languages.map(languages =>
-                    <li className="languages-list">
+                    <li key={languages.name} className="languages-list">
                       <ul className="language">{languages.name}</ul>
                     </li>
                   )}
                   <img src={country.flag} className="flag" alt='country flag' />
                   <h3>Weather in {country.capital}</h3>
+                  <div>
+                    {/* <strong>temperature:</strong> {weather.current.temperature} */}
+                    {/* <img src={weather.current.weather_icons} alt="Current weather icon"/> */}
+                  </div>
                 </div>
                 )      
       }
