@@ -12,3 +12,14 @@
 	height: 600px;
 	width: 800px;
 }
+
+.weather-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.weather-icon {
+	height: 100px;
+	width: 100px;
+	padding-bottom: 5px;
+}

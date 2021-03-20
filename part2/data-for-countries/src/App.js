@@ -79,11 +79,16 @@ function App() {
                     </li>
                   )}
                   <img src={country.flag} className="flag" alt='country flag' />
-                  <h3>Weather in {country.capital}</h3>
-                  <div>
-                    {/* <strong>temperature:</strong> {weather.current.temperature} */}
-                    {/* <img src={weather.current.weather_icons} alt="Current weather icon"/> */}
-                  </div>
+                      <h3>Weather in {country.capital}</h3>
+                      <div className="weather-info">
+                        <div>
+                          <strong>temperature: </strong> {weather.current.temperature} Celcius
+                        </div>
+                        <img src={weather.current.weather_icons} className="weather-icon" alt="Current weather icon"/>
+                        <div>
+                          <strong>wind:</strong> {weather.current.wind_speed} mph direction {weather.current.wind_dir}
+                        </div>
+                      </div>
                 </div>
                 )      
       }
