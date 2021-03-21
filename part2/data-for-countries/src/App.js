@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY}&query=${search}`)
+      .get(`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_API_KEY}&query=${encodeURI}${search}`)
       .then (response => {
         console.log('promise fulfilled')
         console.log(response.data)
