@@ -28,6 +28,12 @@ const App = () => {
       id: persons.length + 1,
     }
 
+    axios
+      .post('http://localhost:3001/persons', nameObject)
+      .then(response => {
+        console.log(response);
+      })
+
     if (persons.every((aPerson) => aPerson.name !== newName)) {
       setPersons([...persons, nameObject])
       setNewName('')
