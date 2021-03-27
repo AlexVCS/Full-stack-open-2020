@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import personsService from './services/persons'
+import personService from './services/person'
 import DisplayPeople from './components/DisplayPeople'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -12,7 +11,7 @@ const App = () => {
   const [ search, setSearch ] = useState('')
 
   useEffect(() => {
-    personsService
+    personService
       .getAll()
       .then(response => {
         setPersons(response.data)
@@ -27,8 +26,8 @@ const App = () => {
       id: persons.length + 1,
     }
 
-    axios
-      .post('http://localhost:3001/persons', nameObject)
+    personService
+      .create(nameObject)
       .then(response => {
         console.log(response);
       })
@@ -42,6 +41,12 @@ const App = () => {
       setNewName('')
       setNewNumber('')
     } 
+  }
+
+  const removePerson = () => {
+    // event.preventDefault()
+    personService
+      .remove()
   }
 
   const handleNameChange = (event) => {
@@ -67,10 +72,11 @@ const App = () => {
             newNumber={newNumber}
             handleNumberChange={handleNumberChange}
           />
-      <h2>Numbers</h2>
-        <DisplayPeople
-          people={people}
-        />
+        <h2>Numbers</h2>
+          <DisplayPeople
+            people={people}
+            removePerson={removePerson}
+          />
     </div>
   )
 }
