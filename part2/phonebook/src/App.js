@@ -43,10 +43,9 @@ const App = () => {
     } 
   }
 
-  const removePerson = () => {
-    // event.preventDefault()
+  const removePerson = (person, name, id) => {
     personService
-      .remove()
+      .remove(person, name, id)
   }
 
   const handleNameChange = (event) => {

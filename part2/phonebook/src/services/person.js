@@ -16,9 +16,9 @@ const create = newObject => {
 //     return request.then(response => response.data)
 // }
 
-const remove = (id, newName) => {
+const remove = (person, name, id) => {
     const request = axios.delete(`${baseUrl}/${id}`)
-    return request.then(response => response.data, window.confirm(`Delete ${newName}`))
+    return request.then(response => response.data, window.confirm(`Delete ${name}`))
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
