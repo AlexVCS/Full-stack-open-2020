@@ -43,9 +43,9 @@ const App = () => {
     } 
   }
 
-  const removePerson = (person, name, id) => {
+  const removePerson = (id, name) => {
     personService
-      .remove(person, name, id)
+      .remove(id, name)
   }
 
   const handleNameChange = (event) => {
