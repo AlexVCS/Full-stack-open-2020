@@ -43,9 +43,13 @@ const App = () => {
     } 
   }
 
-  const removePerson = (id, name) => {
-    personService
+  const removePerson = async (id, name) => {
+    await personService
       .remove(id, name)
+    const removeById = persons.filter((person) => {
+      return person.id !== id
+    })
+    setPersons(removeById);
   }
 
   const handleNameChange = (event) => {
