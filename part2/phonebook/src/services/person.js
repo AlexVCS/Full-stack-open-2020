@@ -11,10 +11,10 @@ const create = newObject => {
     return request.then(response => response.data)
 }
 
-// const update = (id, newObject) => {
-//     const request = axios.put(`${baseUrl}/${id}`, newObject)
-//     return request.then(response => response.data)
-// }
+const update = (id, name, newObject) => {
+    const request = axios.put(`${baseUrl}/${id}`, newObject)
+    return request.then(response => response.data, window.confirm(`${name} is already added to the phonebook, want to replace the old number with a new one?`))
+}
 
 const remove = (id, name) => {
     const request = axios.delete(`${baseUrl}/${id}`)
@@ -22,4 +22,4 @@ const remove = (id, name) => {
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, create, remove }
+export default { getAll, create, remove, update }

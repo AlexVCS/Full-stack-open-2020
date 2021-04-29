@@ -3,12 +3,14 @@ import personService from './services/person'
 import DisplayPeople from './components/DisplayPeople'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
+import Notification from './components/Notification'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ search, setSearch ] = useState('')
+  const [ errorMessage, setErrorMessage ] = useState('some error happened...')
 
   useEffect(() => {
     personService
@@ -32,14 +34,23 @@ const App = () => {
         console.log(response);
       })
 
+    const updatePerson = async (id, name) => {
+      await personService
+        .update(id, name)
+        .then(response => {
+          setPersons(persons.map((newPhone => newPhone.id !== id ? newPhone : response.data)))
+        })
+    }
+
     if (persons.every((aPerson) => aPerson.name !== newName)) {
       setPersons([...persons, nameObject])
       setNewName('')
       setNewNumber('')
     } else {
-      alert(`${newName} is already added to phonebook`)
-      setNewName('')
-      setNewNumber('')
+      updatePerson();
+      // alert(`${newName} is already added to phonebook`)
+      // setNewName('')
+      // setNewNumber('')
     } 
   }
 
@@ -67,6 +78,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+        <Notification message={errorMessage} />
         <Filter setSearch={setSearch} />
           <PersonForm 
             newName={newName}
