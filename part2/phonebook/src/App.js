@@ -4,6 +4,7 @@ import DisplayPeople from './components/DisplayPeople'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Notification from './components/Notification'
+import createUUID from './services/uuid'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
@@ -25,7 +26,7 @@ const App = () => {
     const nameObject = {
       name: newName,
       number: newNumber,
-      id: persons.length + 1,
+      id: createUUID,
     }
 
     personService
@@ -33,14 +34,6 @@ const App = () => {
       .then(response => {
         console.log(response);
       })
-
-    const updatePerson = async (id, name) => {
-      await personService
-        .update(id, name)
-        .then(response => {
-          setPersons(persons.map((newPhone => newPhone.id !== id ? newPhone : response.data)))
-        })
-    }
 
     if (persons.every((aPerson) => aPerson.name !== newName)) {
       setPersons([...persons, nameObject])
@@ -52,6 +45,14 @@ const App = () => {
       // setNewName('')
       // setNewNumber('')
     } 
+  }
+
+  const updatePerson = async (id, name) => {
+    await personService
+      .update(id, name)
+      .then(response => {
+        setPersons(persons.map((newPhone => newPhone.id !== id ? newPhone : response.data)))
+      })
   }
 
   const removePerson = async (id, name) => {
