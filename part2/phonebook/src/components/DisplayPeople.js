@@ -1,5 +1,3 @@
-import createUUID from "../services/uuid"
-
 const DisplayPeople = ({ people, removePerson }) => {
     return (
         <div>

@@ -23,36 +23,47 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
-    const nameObject = {
+    const personObject = {
       name: newName,
       number: newNumber,
-      id: createUUID,
+      id: createUUID(),
     }
 
     personService
-      .create(nameObject)
+      .create(personObject)
       .then(response => {
         console.log(response);
       })
-
-    if (persons.every((aPerson) => aPerson.name !== newName)) {
-      setPersons([...persons, nameObject])
-      setNewName('')
-      setNewNumber('')
-    } else {
-      updatePerson();
-      // alert(`${newName} is already added to phonebook`)
-      // setNewName('')
-      // setNewNumber('')
-    } 
+    }
   }
 
-  const updatePerson = async (id, name) => {
-    await personService
-      .update(id, name)
+  function addPerson( personObject ) {
+    personService
+      .create(personObject)
+      .then(response => {
+        console.log(response);
+      })
+      setPersons([...persons, personObject])
+  }
+
+  function updatePerson(id, personObject) {
+    personService
+      .update(id, personObject)
       .then(response => {
         setPersons(persons.map((newPhone => newPhone.id !== id ? newPhone : response.data)))
-      })
+  }
+
+  function handleNameSubmit(event) {
+    const person = persons.find( person => person.name === newName)
+    if( person ) {
+      person = { personObject: person, number: newNumber }
+      updatePerson(person.id, person);
+    } else {
+      person = { name: newName, number: newNumber, id: createUUID() }
+      addPerson(person)
+    }
+      setNewName('')
+      setNewNumber('')
   }
 
   const removePerson = async (id, name) => {
