@@ -24,7 +24,7 @@ function App() {
 
     const filteredCountryList = countries.filter(({ name, altSpellings }) =>
                                 name.toLowerCase().includes(search.toLowerCase() )||
-                                altSpellings.some(spelling => spelling.toLowerCase().includes(search.toLowerCase() ))
+                                altSpellings.some(spelling => spelling.toLowerCase().startsWith(search.toLowerCase() ))
       )
       setFilteredCountries(filteredCountryList)
   }, [search, countries])
