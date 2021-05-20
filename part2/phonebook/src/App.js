@@ -35,7 +35,6 @@ const App = () => {
         console.log(response);
       })
     }
-  }
 
   function addPerson( personObject ) {
     personService
@@ -51,17 +50,18 @@ const App = () => {
       .update(id, personObject)
       .then(response => {
         setPersons(persons.map((newPhone => newPhone.id !== id ? newPhone : response.data)))
+    }
   }
 
   function handleNameSubmit(event) {
     const person = persons.find( person => person.name === newName)
-    if( person ) {
+      if( person ) {
       person = { personObject: person, number: newNumber }
       updatePerson(person.id, person);
-    } else {
+      } else {
       person = { name: newName, number: newNumber, id: createUUID() }
       addPerson(person)
-    }
+      }
       setNewName('')
       setNewNumber('')
   }
