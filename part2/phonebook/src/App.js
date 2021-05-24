@@ -11,7 +11,7 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ search, setSearch ] = useState('')
-  const [ errorMessage, setErrorMessage ] = useState('some error happened...')
+  const [ message, setMessage ] = useState(`Added ${newName}`)
 
   useEffect(() => {
     personService
@@ -49,17 +49,18 @@ const App = () => {
     personService
       .update(id, personObject)
       .then(response => {
-        setPersons(persons.map((newPhone => newPhone.id !== id ? newPhone : response.data)))
-    }
+        setPersons(persons.map(newPhone => newPhone.id !== id ? newPhone : response.data))
+      })
   }
 
-  function handleNameSubmit(event) {
-    const person = persons.find( person => person.name === newName)
-      if( person ) {
-      person = { personObject: person, number: newNumber }
+  function handleNameSubmit(personObject, number) {
+    const findMatch = persons.find( person => person.name.toLowerCase() === newName.toLowerCase())
+      if( findMatch ) {
+      const person = { ...personObject, number }
+      console.log(personObject);
       updatePerson(person.id, person);
       } else {
-      person = { name: newName, number: newNumber, id: createUUID() }
+      const person = { name: newName, number: newNumber, id: createUUID() }
       addPerson(person)
       }
       setNewName('')
@@ -90,12 +91,16 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-        <Notification message={errorMessage} />
+        <Notification
+          message={message}
+          newName={newName}
+        />
         <Filter setSearch={setSearch} />
           <PersonForm 
             newName={newName}
             addName={addName}
             handleNameChange={handleNameChange}
+            handleNameSubmit={handleNameSubmit}
             newNumber={newNumber}
             handleNumberChange={handleNumberChange}
           />
