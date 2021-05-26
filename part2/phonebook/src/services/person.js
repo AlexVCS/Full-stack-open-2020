@@ -11,8 +11,8 @@ const create = newObject => {
     return request.then(response => response.data)
 }
 
-const update = (id, name, newObject) => {
-    const request = axios.put(`${baseUrl}/${id}`, newObject)
+const update = (id, name) => {
+    const request = axios.put(`${baseUrl}/${id}`)
     return request.then(response => response.data, window.confirm(`${name} is already added to the phonebook, want to replace the old number with a new one?`))
 }
 

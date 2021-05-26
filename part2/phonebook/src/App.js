@@ -45,20 +45,21 @@ const App = () => {
       setPersons([...persons, personObject])
   }
 
-  function updatePerson(id, personObject) {
+  function updatePerson(id, name) {
     personService
-      .update(id, personObject)
+      .update(id, name)
       .then(response => {
         setPersons(persons.map(newPhone => newPhone.id !== id ? newPhone : response.data))
       })
   }
 
-  function handleNameSubmit(personObject, number) {
+  function handleNameSubmit(event, personObject, name, number) {
+    event.preventDefault()
     const findMatch = persons.find( person => person.name.toLowerCase() === newName.toLowerCase())
       if( findMatch ) {
       const person = { ...personObject, number }
       console.log(personObject);
-      updatePerson(person.id, person);
+      updatePerson(person.id, person, name);
       } else {
       const person = { name: newName, number: newNumber, id: createUUID() }
       addPerson(person)
