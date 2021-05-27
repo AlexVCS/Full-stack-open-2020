@@ -11,14 +11,19 @@ const create = newObject => {
     return request.then(response => response.data)
 }
 
-const update = (id, name) => {
-    const request = axios.put(`${baseUrl}/${id}`)
-    return request.then(response => response.data, window.confirm(`${name} is already added to the phonebook, want to replace the old number with a new one?`))
+const update = (id, personObject) => {
+    const request = axios.put(`${baseUrl}/${id}`, personObject)
+    return request.then(response => {
+        return response.data
+    })
+    .catch(error => {
+        console.log('fail');
+    })
 }
 
 const remove = (id, name) => {
-    const request = axios.delete(`${baseUrl}/${id}`)
-    return request.then(response => response.data, window.confirm(`Delete ${name}`))
+        const request = axios.delete(`${baseUrl}/${id}`)
+        return request.then(response => response.data)
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
