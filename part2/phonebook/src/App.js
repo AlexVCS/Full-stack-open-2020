@@ -11,7 +11,8 @@ const App = () => {
 	const [newName, setNewName] = useState("");
 	const [newNumber, setNewNumber] = useState("");
 	const [search, setSearch] = useState("");
-	const [message, setMessage] = useState(`Added ${newName}`);
+	const [message, setMessage] = useState(``);
+	const [showNotification, setShowNotification] = useState(false);
 
 	useEffect(() => {
 		personService.getAll().then((response) => {
@@ -65,10 +66,16 @@ const App = () => {
 			if (confirmation) {
 				const person = { ...findMatch, number: newNumber };
 				updatePerson(person.id, person);
+					setTimeout(() => {
+					setMessage(`Updated ${person.name}`);
+				}, 3000)
 			}
 		} else {
 			const person = { name: newName, number: newNumber, id: createUUID() };
 			addPerson(person);
+			setTimeout(() => {
+				setMessage(`Added ${person.name}`);
+			}, 3000);
 		}
 		setNewName("");
 		setNewNumber("");
@@ -93,7 +100,6 @@ const App = () => {
 		setNewNumber(event.target.value);
 	};
 
-	// console.log('logging persons', persons);
 	const people = persons.filter((person) => {
 		return person.name.toLowerCase().includes(search.toLowerCase());
 	});
@@ -101,7 +107,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
-			<Notification message={message} newName={newName} />
+			{setTimeout && <Notification message={message} />}
 			<Filter setSearch={setSearch} />
 			<PersonForm
 				newName={newName}
