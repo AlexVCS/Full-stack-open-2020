@@ -11,8 +11,8 @@ const App = () => {
 	const [newName, setNewName] = useState("");
 	const [newNumber, setNewNumber] = useState("");
 	const [search, setSearch] = useState("");
-	const [message, setMessage] = useState(``);
-	const [showNotification, setShowNotification] = useState(false);
+	const [message, setMessage] = useState(null);
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		personService.getAll().then((response) => {
@@ -36,21 +36,25 @@ const App = () => {
 	function addPerson(personObject) {
 		personService.create(personObject).then((response) => {
 			console.log(response);
+			setMessage(`Added ${response.name}`)
 		});
 		setPersons([...persons, personObject]);
 	}
 
 	function updatePerson(id, name) {
+		const person = persons.find(p => p.id === id)
 		personService
 			.update(id, name)
 			.then((response) => {
-				console.log("logging response", response);
+				setMessage(`Updated ${response.name}`);
+				console.log("updated successfully", response);
 				setPersons(
 					persons.map((newPhone) => (newPhone.id !== id ? newPhone : response))
 				);
 			})
 			.catch((error) => {
-				alert(`the number didn't update`);
+				setMessage(`${person.name} has been removed from the server`)
+				setError(true)
 			});
 	}
 
@@ -66,15 +70,15 @@ const App = () => {
 			if (confirmation) {
 				const person = { ...findMatch, number: newNumber };
 				updatePerson(person.id, person);
-					setTimeout(() => {
-					setMessage(`Updated ${person.name}`);
+				setTimeout(() => {
+					setMessage(null);
 				}, 3000)
 			}
 		} else {
 			const person = { name: newName, number: newNumber, id: createUUID() };
 			addPerson(person);
 			setTimeout(() => {
-				setMessage(`Added ${person.name}`);
+				setMessage(null);
 			}, 3000);
 		}
 		setNewName("");
@@ -107,7 +111,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
-			{setTimeout && <Notification message={message} />}
+			<Notification message={message} error={error} />
 			<Filter setSearch={setSearch} />
 			<PersonForm
 				newName={newName}
