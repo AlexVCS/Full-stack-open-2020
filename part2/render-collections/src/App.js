@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import Footer from './components/Footer'
 import Note from './components/Note'
@@ -8,13 +9,13 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('error occured...')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
-    noteService
-      .getAll()
-      .then(initialNotes => {
-        setNotes(initialNotes)
+    axios
+      .get('http://localhost:3001/api/notes')
+      .then(res => {
+        setNotes(res.data)
       })
   }, [])
 
@@ -40,8 +41,8 @@ const App = () => {
 
     noteService
       .update(id, changedNote)
-       .then(returnedNote => {
-       setNotes(notes.map(note => note.id !== id ? note : returnedNote))
+      .then(returnedNote => {
+      setNotes(notes.map(note => note.id !== id ? note : returnedNote))
     })
       .catch(error => {
         setErrorMessage(
@@ -50,7 +51,7 @@ const App = () => {
         setTimeout(() => {
           setErrorMessage(null)
           }, 5000)
-        setNotes(notes.filter(n => n.id !== id))
+          setNotes(notes.filter(n => n.id !== id))
       })
   }
 
